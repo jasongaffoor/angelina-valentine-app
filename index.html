@@ -90,7 +90,9 @@ button {
 
 <p>Tap below to unlock love 💘</p>
 
-<button onclick="showNote()">Reveal Love Note</button>
+  <img src="unnamed (1).jpg" alt="Us together" style="width:300px; height:auto; border-radius:20px;">
+
+<button onclick="showNote()">Click to Reveal Love Note</button>
 <div id="note" class="card hidden"></div>
 
 <h2>Love Coupons 🎟️</h2>
@@ -102,12 +104,12 @@ button {
 
 <div class="card">
   <input type="checkbox" onclick="saveCoupons()" id="c2">
-  Movie Night Pick 🎬
+  I will admit Drake Maye is the best QB 🏈
 </div>
 
 <div class="card">
   <input type="checkbox" onclick="saveCoupons()" id="c3">
-  Breakfast in Bed 🥞
+  Lifetime perscription to ambien 💊
 </div>
 
 <h2 style="margin-top: 35px;">One last question… 💖</h2>
@@ -124,10 +126,9 @@ button {
 
 <script>
 const notes = [
-  "You are my favorite person in the world ❤️",
-  "Every day with you feels magical ✨",
-  "I would choose you in every lifetime 💕",
-  "You make my world brighter 🌎"
+  "You are my favorite mentally unwell person 🥳",
+  "I would choose over a vikings superbowl 💕",
+
 ];
 
 function showNote() {
@@ -157,11 +158,11 @@ function answerValentine(choice) {
   heartWrap.innerHTML = "";
 
   if (choice === "no") {
-    result.textContent = "Too bad, you don't got a choice 😈💘";
+    result.textContent = "Too bad, you don't got a choice 😐 (click yes for hearts)";
     return;
   }
 
-  result.textContent = "Wait.. did you really click yes? 🥹❤️";
+  result.textContent = "Wait.. did you really click yes? ❤️";
   explodeHearts();
 }
 
