@@ -1,193 +1,188 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Valentine ❤️</title>
+
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(to bottom right, #ffccd5, #ff4d6d);
-    color: white;
-    margin: 0;
-    padding: 20px;
-  }
-  h1 { margin-top: 20px; }
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom right, #ffccd5, #ff4d6d);
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
 
-  button {
-    background: white;
-    color: #ff4d6d;
-    border: none;
-    padding: 12px 20px;
-    margin: 10px;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+h1 {
+  margin-top: 20px;
+}
 
-  .card {
-    background: white;
-    color: #ff4d6d;
-    padding: 15px;
-    border-radius: 20px;
-    margin: 15px auto;
-    max-width: 320px;
-  }
+button {
+  background: white;
+  color: #ff4d6d;
+  border: none;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  .hidden { display: none; }
+.card {
+  background: white;
+  color: #ff4d6d;
+  padding: 15px;
+  border-radius: 20px;
+  margin: 15px auto;
+  max-width: 320px;
+}
 
-  /* Animated heart */
-/* Container for floating hearts */
+.hidden {
+  display: none;
+}
+
+/* 💥 Heart Explosion Area */
 #heartWrap {
   position: relative;
-  height: 150px;
-  margin-top: 40px;
+  width: 100%;
+  height: 170px;
+  margin-top: 25px;
   overflow: hidden;
 }
 
-/* Tiny heart style */
+/* Tiny floating hearts */
 .tiny-heart {
   position: absolute;
-  color: white;
-  font-size: 20px;
-  animation: floatUp 2s ease-out forwards;
+  bottom: 0;
+  font-size: 22px;
+  opacity: 0;
+  animation: floatUp 1.8s ease-out forwards;
 }
 
 /* Floating animation */
 @keyframes floatUp {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  15% {
     opacity: 1;
   }
   100% {
-    transform: translateY(-120px) scale(1.5);
+    transform: translateY(-150px) scale(1.6);
     opacity: 0;
   }
 }
-
-
-  .valentine-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
 </style>
 </head>
 
 <body>
-  <h1>For My Rocky 🪨🖤</h1>
 
-  <!-- Optional image under H1 (edit filename) -->
-  <!-- <img src="us.jpg" alt="Us together" style="max-width:90%; width:300px; height:auto; border-radius:20px; margin:15px 0; box-shadow:0 10px 20px rgba(0,0,0,0.2);" /> -->
+<h1>For My Valentine ❤️</h1>
 
-  <p>Tap below to unlock love 💘</p>
+<!-- Optional image under title -->
+<!-- Replace us.jpg with your image filename -->
+<!--
+<img src="us.jpg" style="max-width:90%; width:300px; height:auto; border-radius:20px; margin:15px 0; box-shadow:0 10px 20px rgba(0,0,0,0.2);">
+-->
 
-    <img src="unnamed (1).jpg" alt="Us together" style="width:300px; height:auto; border-radius:20px;">
+<p>Tap below to unlock love 💘</p>
 
-  <button onclick="showNote()">Reveal Love Note</button>
-  <div id="note" class="card hidden"></div>
+<button onclick="showNote()">Reveal Love Note</button>
+<div id="note" class="card hidden"></div>
 
-  <h2>Love Coupons 🎟️</h2>
+<h2>Love Coupons 🎟️</h2>
 
-  <div class="card">
-    <input type="checkbox" onclick="saveCoupons()" id="c1" />
-    Free Hug Anytime 🤗
-  </div>
+<div class="card">
+  <input type="checkbox" onclick="saveCoupons()" id="c1">
+  Free Hug Anytime 🤗
+</div>
 
-  <div class="card">
-    <input type="checkbox" onclick="saveCoupons()" id="c2" />
-    Movie Night Pick 🎬
-  </div>
+<div class="card">
+  <input type="checkbox" onclick="saveCoupons()" id="c2">
+  Movie Night Pick 🎬
+</div>
 
-  <div class="card">
-    <input type="checkbox" onclick="saveCoupons()" id="c3" />
-    Breakfast in Bed 🥞
-  </div>
+<div class="card">
+  <input type="checkbox" onclick="saveCoupons()" id="c3">
+  Breakfast in Bed 🥞
+</div>
 
-  <!-- ✅ Valentine question section at the end -->
-  <h2 style="margin-top: 30px;">One last question… 💖</h2>
+<h2 style="margin-top: 35px;">One last question… 💖</h2>
 
-  <div class="card" id="valentineCard">
-    <p style="margin-top: 0; font-size: 18px;"><b>Will you be my Valentine?</b></p>
+<div class="card">
+  <p style="font-size:18px;"><b>Will you be my Valentine?</b></p>
 
-    <div class="valentine-buttons">
-      <button onclick="answerValentine('yes')">Yes</button>
-      <button onclick="answerValentine('no')">No</button>
-    </div>
+  <button onclick="answerValentine('yes')">Yes</button>
+  <button onclick="answerValentine('no')">No</button>
 
-    <div id="valentineResult" style="margin-top: 10px;"></div>
-    <div id="heartWrap" class="hidden">
-      <div class="heart" aria-label="animated heart"></div>
-    </div>
-  </div>
+  <div id="valentineResult" style="margin-top: 10px;"></div>
+  <div id="heartWrap"></div>
+</div>
 
 <script>
-  const notes = [
-    "You are my favorite person in the world ❤️",
-    "Every day with you feels magical ✨",
-    "I would choose you in every lifetime 💕",
-    "You make my world brighter 🌎"
-  ];
+const notes = [
+  "You are my favorite person in the world ❤️",
+  "Every day with you feels magical ✨",
+  "I would choose you in every lifetime 💕",
+  "You make my world brighter 🌎"
+];
 
-  function showNote() {
-    const random = notes[Math.floor(Math.random() * notes.length)];
-    const noteDiv = document.getElementById("note");
-    noteDiv.innerHTML = random;
-    noteDiv.classList.remove("hidden");
-  }
+function showNote() {
+  const random = notes[Math.floor(Math.random() * notes.length)];
+  const noteDiv = document.getElementById("note");
+  noteDiv.innerHTML = random;
+  noteDiv.classList.remove("hidden");
+}
 
-  function saveCoupons() {
-    localStorage.setItem("c1", document.getElementById("c1").checked);
-    localStorage.setItem("c2", document.getElementById("c2").checked);
-    localStorage.setItem("c3", document.getElementById("c3").checked);
-  }
+function saveCoupons() {
+  localStorage.setItem("c1", document.getElementById("c1").checked);
+  localStorage.setItem("c2", document.getElementById("c2").checked);
+  localStorage.setItem("c3", document.getElementById("c3").checked);
+}
 
-  window.onload = function() {
-    document.getElementById("c1").checked = localStorage.getItem("c1") === "true";
-    document.getElementById("c2").checked = localStorage.getItem("c2") === "true";
-    document.getElementById("c3").checked = localStorage.getItem("c3") === "true";
-  };
+window.onload = function() {
+  document.getElementById("c1").checked = localStorage.getItem("c1") === "true";
+  document.getElementById("c2").checked = localStorage.getItem("c2") === "true";
+  document.getElementById("c3").checked = localStorage.getItem("c3") === "true";
+};
 
-  function answerValentine(choice) {
+function answerValentine(choice) {
   const result = document.getElementById("valentineResult");
   const heartWrap = document.getElementById("heartWrap");
 
+  result.textContent = "";
   heartWrap.innerHTML = "";
-  result.innerHTML = "";
 
   if (choice === "no") {
-    result.innerHTML = "Too bad, you don't got a choice 😈💘";
-  } else {
-    result.innerHTML = "Wait.. did you really click yes? 🥹❤️";
-    explodeHearts();
+    result.textContent = "Too bad, you don't got a choice 😈💘";
+    return;
   }
+
+  result.textContent = "Wait.. did you really click yes? 🥹❤️";
+  explodeHearts();
 }
 
 function explodeHearts() {
   const heartWrap = document.getElementById("heartWrap");
 
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 30; i++) {
     const heart = document.createElement("div");
-    heart.classList.add("tiny-heart");
-    heart.innerHTML = "❤️";
+    heart.className = "tiny-heart";
+    heart.textContent = "❤️";
 
-    // Random horizontal position
-    heart.style.left = Math.random() * 100 + "%";
-
-    // Random animation delay
-    heart.style.animationDelay = Math.random() * 0.5 + "s";
+    heart.style.left = (5 + Math.random() * 90) + "%";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (1.2 + Math.random() * 1.5) + "s";
 
     heartWrap.appendChild(heart);
 
-    // Remove after animation
-    setTimeout(() => {
-      heart.remove();
-    }, 2000);
+    setTimeout(() => heart.remove(), 2500);
   }
 }
-
 </script>
+
 </body>
 </html>
