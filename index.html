@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Valentine ❤️</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom right, #ffccd5, #ff4d6d);
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
+h1 {
+  margin-top: 20px;
+}
+button {
+  background: white;
+  color: #ff4d6d;
+  border: none;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.card {
+  background: white;
+  color: #ff4d6d;
+  padding: 15px;
+  border-radius: 20px;
+  margin: 15px auto;
+  max-width: 300px;
+}
+.hidden {
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<h1>For My Valentine ❤️</h1>
+<p>Tap below to unlock love 💘</p>
+
+<button onclick="showNote()">Reveal Love Note</button>
+
+<div id="note" class="card hidden"></div>
+
+<h2>Love Coupons 🎟️</h2>
+
+<div class="card">
+  <input type="checkbox" onclick="saveCoupons()" id="c1">
+  Free Hug Anytime 🤗
+</div>
+
+<div class="card">
+  <input type="checkbox" onclick="saveCoupons()" id="c2">
+  Movie Night Pick 🎬
+</div>
+
+<div class="card">
+  <input type="checkbox" onclick="saveCoupons()" id="c3">
+  Breakfast in Bed 🥞
+</div>
+
+<script>
+const notes = [
+  "You are my favorite person in the world ❤️",
+  "Every day with you feels magical ✨",
+  "I would choose you in every lifetime 💕",
+  "You make my world brighter 🌎"
+];
+
+function showNote() {
+  const random = notes[Math.floor(Math.random() * notes.length)];
+  const noteDiv = document.getElementById("note");
+  noteDiv.innerHTML = random;
+  noteDiv.classList.remove("hidden");
+}
+
+function saveCoupons() {
+  localStorage.setItem("c1", document.getElementById("c1").checked);
+  localStorage.setItem("c2", document.getElementById("c2").checked);
+  localStorage.setItem("c3", document.getElementById("c3").checked);
+}
+
+window.onload = function() {
+  document.getElementById("c1").checked = localStorage.getItem("c1") === "true";
+  document.getElementById("c2").checked = localStorage.getItem("c2") === "true";
+  document.getElementById("c3").checked = localStorage.getItem("c3") === "true";
+};
+</script>
+
+</body>
+</html>
