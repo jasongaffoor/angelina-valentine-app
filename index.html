@@ -38,30 +38,34 @@
   .hidden { display: none; }
 
   /* Animated heart */
-  .heart {
-    position: relative;
-    width: 70px;
-    height: 70px;
-    margin: 18px auto 0;
-    transform: rotate(-45deg);
-    animation: beat 0.9s infinite;
-  }
-  .heart::before,
-  .heart::after {
-    content: "";
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    background: #FF0000;
-    border-radius: 50%;
-  }
-  .heart::before { top: -35px; left: 0; }
-  .heart::after { left: 35px; top: 0; }
+/* Container for floating hearts */
+#heartWrap {
+  position: relative;
+  height: 150px;
+  margin-top: 40px;
+  overflow: hidden;
+}
 
-  @keyframes beat {
-    0%, 100% { transform: rotate(-45deg) scale(1); }
-    50% { transform: rotate(-45deg) scale(1.18); }
+/* Tiny heart style */
+.tiny-heart {
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  animation: floatUp 2s ease-out forwards;
+}
+
+/* Floating animation */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
   }
+  100% {
+    transform: translateY(-120px) scale(1.5);
+    opacity: 0;
+  }
+}
+
 
   .valentine-buttons {
     display: flex;
@@ -147,20 +151,43 @@
   };
 
   function answerValentine(choice) {
-    const result = document.getElementById("valentineResult");
-    const heartWrap = document.getElementById("heartWrap");
+  const result = document.getElementById("valentineResult");
+  const heartWrap = document.getElementById("heartWrap");
 
-    // reset heart each click
-    heartWrap.classList.add("hidden");
-    result.innerHTML = "";
+  heartWrap.innerHTML = "";
+  result.innerHTML = "";
 
-    if (choice === "no") {
-      result.innerHTML = "Too bad, you don't got a choice 😈💘";
-    } else {
-      result.innerHTML = "Wait.. did you really click yes? 🥹❤️";
-      heartWrap.classList.remove("hidden");
-    }
+  if (choice === "no") {
+    result.innerHTML = "Too bad, you don't got a choice 😈💘";
+  } else {
+    result.innerHTML = "Wait.. did you really click yes? 🥹❤️";
+    explodeHearts();
   }
+}
+
+function explodeHearts() {
+  const heartWrap = document.getElementById("heartWrap");
+
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("tiny-heart");
+    heart.innerHTML = "❤️";
+
+    // Random horizontal position
+    heart.style.left = Math.random() * 100 + "%";
+
+    // Random animation delay
+    heart.style.animationDelay = Math.random() * 0.5 + "s";
+
+    heartWrap.appendChild(heart);
+
+    // Remove after animation
+    setTimeout(() => {
+      heart.remove();
+    }, 2000);
+  }
+}
+
 </script>
 </body>
 </html>
