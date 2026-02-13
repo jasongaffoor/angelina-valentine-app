@@ -1,99 +1,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Rocky 🪨 ❤️</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For My Valentine ❤️</title>
 <style>
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: linear-gradient(to bottom right, #ffccd5, #ff4d6d);
-  color: white;
-  margin: 0;
-  padding: 20px;
-}
-h1 {
-  margin-top: 20px;
-}
-button {
-  background: white;
-  color: #ff4d6d;
-  border: none;
-  padding: 12px 20px;
-  margin: 10px;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-}
-.card {
-  background: white;
-  color: #ff4d6d;
-  padding: 15px;
-  border-radius: 20px;
-  margin: 15px auto;
-  max-width: 300px;
-}
-.hidden {
-  display: none;
-}
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom right, #ffccd5, #ff4d6d);
+    color: white;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 { margin-top: 20px; }
+
+  button {
+    background: white;
+    color: #ff4d6d;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .card {
+    background: white;
+    color: #ff4d6d;
+    padding: 15px;
+    border-radius: 20px;
+    margin: 15px auto;
+    max-width: 320px;
+  }
+
+  .hidden { display: none; }
+
+  /* Animated heart */
+  .heart {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    margin: 18px auto 0;
+    transform: rotate(-45deg);
+    animation: beat 0.9s infinite;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+  .heart::before { top: -35px; left: 0; }
+  .heart::after { left: 35px; top: 0; }
+
+  @keyframes beat {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.18); }
+  }
+
+  .valentine-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
 </style>
 </head>
+
 <body>
+  <h1>For My Valentine ❤️</h1>
 
-<h1>For My Rocky 🪨 ❤️</h1>
-<p>Tap below to unlock love 💘</p>
+  <!-- Optional image under H1 (edit filename) -->
+  <!-- <img src="us.jpg" alt="Us together" style="max-width:90%; width:300px; height:auto; border-radius:20px; margin:15px 0; box-shadow:0 10px 20px rgba(0,0,0,0.2);" /> -->
 
-  <img src="unnamed (1).jpg" alt="Us together" style="width:300px; height:auto; border-radius:20px;">
+  <p>Tap below to unlock love 💘</p>
 
-<button onclick="showNote()">Reveal Love Note</button>
+  <button onclick="showNote()">Reveal Love Note</button>
+  <div id="note" class="card hidden"></div>
 
-<div id="note" class="card hidden"></div>
+  <h2>Love Coupons 🎟️</h2>
 
-<h2>Love Coupons 🎟️</h2>
+  <div class="card">
+    <input type="checkbox" onclick="saveCoupons()" id="c1" />
+    Free Hug Anytime 🤗
+  </div>
 
-<div class="card">
-  <input type="checkbox" onclick="saveCoupons()" id="c1">
-  Free Hug Anytime 🤗
-</div>
+  <div class="card">
+    <input type="checkbox" onclick="saveCoupons()" id="c2" />
+    Movie Night Pick 🎬
+  </div>
 
-<div class="card">
-  <input type="checkbox" onclick="saveCoupons()" id="c2">
-  Admit Drake Maye is the Greatest 🏈
-</div>
+  <div class="card">
+    <input type="checkbox" onclick="saveCoupons()" id="c3" />
+    Breakfast in Bed 🥞
+  </div>
 
-<div class="card">
-  <input type="checkbox" onclick="saveCoupons()" id="c3">
-  Lifetime Subscription to Ambien 💊
-</div>
+  <!-- ✅ Valentine question section at the end -->
+  <h2 style="margin-top: 30px;">One last question… 💖</h2>
+
+  <div class="card" id="valentineCard">
+    <p style="margin-top: 0; font-size: 18px;"><b>Will you be my Valentine?</b></p>
+
+    <div class="valentine-buttons">
+      <button onclick="answerValentine('yes')">Yes</button>
+      <button onclick="answerValentine('no')">No</button>
+    </div>
+
+    <div id="valentineResult" style="margin-top: 10px;"></div>
+    <div id="heartWrap" class="hidden">
+      <div class="heart" aria-label="animated heart"></div>
+    </div>
+  </div>
 
 <script>
-const notes = [
-  "I ❤️ you even though you are mentally unwell.",
-  "Every day with you feels magical and unhinged ✨",
-  "I would choose you over a Vikings Superbowl 💕",
+  const notes = [
+    "You are my favorite person in the world ❤️",
+    "Every day with you feels magical ✨",
+    "I would choose you in every lifetime 💕",
+    "You make my world brighter 🌎"
+  ];
 
-];
+  function showNote() {
+    const random = notes[Math.floor(Math.random() * notes.length)];
+    const noteDiv = document.getElementById("note");
+    noteDiv.innerHTML = random;
+    noteDiv.classList.remove("hidden");
+  }
 
-function showNote() {
-  const random = notes[Math.floor(Math.random() * notes.length)];
-  const noteDiv = document.getElementById("note");
-  noteDiv.innerHTML = random;
-  noteDiv.classList.remove("hidden");
-}
+  function saveCoupons() {
+    localStorage.setItem("c1", document.getElementById("c1").checked);
+    localStorage.setItem("c2", document.getElementById("c2").checked);
+    localStorage.setItem("c3", document.getElementById("c3").checked);
+  }
 
-function saveCoupons() {
-  localStorage.setItem("c1", document.getElementById("c1").checked);
-  localStorage.setItem("c2", document.getElementById("c2").checked);
-  localStorage.setItem("c3", document.getElementById("c3").checked);
-}
+  window.onload = function() {
+    document.getElementById("c1").checked = localStorage.getItem("c1") === "true";
+    document.getElementById("c2").checked = localStorage.getItem("c2") === "true";
+    document.getElementById("c3").checked = localStorage.getItem("c3") === "true";
+  };
 
-window.onload = function() {
-  document.getElementById("c1").checked = localStorage.getItem("c1") === "true";
-  document.getElementById("c2").checked = localStorage.getItem("c2") === "true";
-  document.getElementById("c3").checked = localStorage.getItem("c3") === "true";
-};
+  function answerValentine(choice) {
+    const result = document.getElementById("valentineResult");
+    const heartWrap = document.getElementById("heartWrap");
+
+    // reset heart each click
+    heartWrap.classList.add("hidden");
+    result.innerHTML = "";
+
+    if (choice === "no") {
+      result.innerHTML = "Too bad, you don't got a choice 😈💘";
+    } else {
+      result.innerHTML = "Wait.. did you really click yes? 🥹❤️";
+      heartWrap.classList.remove("hidden");
+    }
+  }
 </script>
-
 </body>
 </html>
